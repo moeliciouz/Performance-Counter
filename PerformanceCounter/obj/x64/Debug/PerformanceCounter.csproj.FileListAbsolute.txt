@@ -1,0 +1,5 @@
+C:\Users\morit\Documents\Visual Studio 2015\Projects\PerformanceCounter\PerformanceCounter\bin\x64\Debug\PerformanceCounter.exe.config
+C:\Users\morit\Documents\Visual Studio 2015\Projects\PerformanceCounter\PerformanceCounter\bin\x64\Debug\PerformanceCounter.exe
+C:\Users\morit\Documents\Visual Studio 2015\Projects\PerformanceCounter\PerformanceCounter\bin\x64\Debug\PerformanceCounter.pdb
+C:\Users\morit\Documents\Visual Studio 2015\Projects\PerformanceCounter\PerformanceCounter\obj\x64\Debug\PerformanceCounter.exe
+C:\Users\morit\Documents\Visual Studio 2015\Projects\PerformanceCounter\PerformanceCounter\obj\x64\Debug\PerformanceCounter.pdb

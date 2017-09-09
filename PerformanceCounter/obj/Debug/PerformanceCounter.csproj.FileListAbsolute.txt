@@ -1,0 +1,6 @@
+c:\users\morit\documents\visual studio 2015\Projects\PerformanceCounter\PerformanceCounter\bin\Debug\PerformanceCounter.exe.config
+c:\users\morit\documents\visual studio 2015\Projects\PerformanceCounter\PerformanceCounter\bin\Debug\PerformanceCounter.exe
+c:\users\morit\documents\visual studio 2015\Projects\PerformanceCounter\PerformanceCounter\bin\Debug\PerformanceCounter.pdb
+c:\users\morit\documents\visual studio 2015\Projects\PerformanceCounter\PerformanceCounter\obj\Debug\PerformanceCounter.csprojResolveAssemblyReference.cache
+c:\users\morit\documents\visual studio 2015\Projects\PerformanceCounter\PerformanceCounter\obj\Debug\PerformanceCounter.exe
+c:\users\morit\documents\visual studio 2015\Projects\PerformanceCounter\PerformanceCounter\obj\Debug\PerformanceCounter.pdb
