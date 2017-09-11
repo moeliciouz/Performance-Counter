@@ -23,6 +23,7 @@ namespace PerformanceCounterV1
             String[] NetworkInterface = category.GetInstanceNames();
             string FirstNetworkInterface = NetworkInterface[0];
 
+
             // CPU
 
             // Zeigt die CPU Auslastung in Prozent an
@@ -80,17 +81,22 @@ namespace PerformanceCounterV1
             {
                 // Programm durchgehend laufen lassen 
                 Thread.Sleep(1000);
-
+                
                 // Zwei Zeilen frei
                 Console.WriteLine();
                 Console.WriteLine();
 
                 // Allgemeine Angaben über Computer anzeigen
-
+                Console.WriteLine("Computer Information:");
+                Console.WriteLine();
                 GetComponent("Win32_Processor", "Name");
-                GetComponent("Win32_VideoController", "Name");                                      
-                                              
-                              
+                GetComponent("Win32_VideoController", "Name");
+
+                // Zwei Zeilen frei
+                Console.WriteLine();
+                Console.WriteLine();
+
+
                 // Ausgabe CPU
 
 
@@ -148,7 +154,6 @@ namespace PerformanceCounterV1
 
 
                 // Ausgabe Instanz Festplatte C: 
-
                 Console.WriteLine("Physical Disk C:");
                 Console.WriteLine();
 
@@ -159,21 +164,20 @@ namespace PerformanceCounterV1
                 Console.WriteLine("Physical Disk C: % Write Time: {0}", perfDskPercWriteTime.NextValue());
 
                 //Ausgabe Länge der aktuellen Warteschlange von Festplatte C:
-                Console.WriteLine("Physical Disk C: {0}", perfDskAvgQueueLength.NextValue());
+                Console.WriteLine("Physical Disk C: Average Queue Length: {0}", perfDskAvgQueueLength.NextValue());
 
                 // Zwei Zeilen frei
                 Console.WriteLine();
                 Console.WriteLine();
-
-
+                
 
                 // Ausgabe Netzwerk
 
                 // Ausgabe Netzwerk Interface Bezeichnung
                 
                 // Ausgabe Bytes/sec, die vom Netzwerkinterface verarbeitet werden
-                Console.WriteLine("Network Interface: {1}: Processed Network Data in Bytes: {0}", perfNetIntByteSec.NextValue(), FirstNetworkInterface);
-
+                Console.WriteLine("{1}: Bytes Total/s: {0}", perfNetIntByteSec.NextValue(), FirstNetworkInterface);
+                
             }
 
         }
