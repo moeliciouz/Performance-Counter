@@ -59,13 +59,13 @@ namespace PerformanceCounterV1
             // Festplatte
 
             // Zeigt die % der Zeit, die die Festplatte C:\ mit Lesen verbringt
-            PerformanceCounter perfDskPercReadTime = new PerformanceCounter("PhysicalDisk", "% Disk Read Time", "0 C:");
-            
+            PerformanceCounter perfDskPercReadTime = new PerformanceCounter("PhysicalDisk", "% Disk Read Time","_Total"); //"0 C:"
+
             // Zeigt die % der Zeit, die die Festplatte C:\ mit Schreiben verbringt
-            PerformanceCounter perfDskPercWriteTime = new PerformanceCounter("PhysicalDisk", "% Disk Write Time", "0 C:");
+            PerformanceCounter perfDskPercWriteTime = new PerformanceCounter("PhysicalDisk", "% Disk Write Time", "_Total");
 
             // Zeigt die Länge der aktuellen Warteschlange von Festplatte C: an
-            PerformanceCounter perfDskAvgQueueLength = new PerformanceCounter("PhysicalDisk", "Current Disk Queue Length", "0 C:");
+            PerformanceCounter perfDskAvgQueueLength = new PerformanceCounter("PhysicalDisk", "Current Disk Queue Length", "_Total");
 
 
             // Netzwerk
@@ -86,30 +86,18 @@ namespace PerformanceCounterV1
                 Console.WriteLine();
 
                 // Allgemeine Angaben über Computer anzeigen
+
                 GetComponent("Win32_Processor", "Name");
-                GetComponent("Win32_VideoController", "Name");
-
-                //int ProcessorX = Console.Read();
-                //Console.WriteLine(ProcessorX);
-
-
-
-                //Console.WriteLine("You have a {0} running at {1} MHz.", cpuType, cpuSpeed);
-
-                // Arbeitsspeicher Bezeichnung herausfinden
-
-                // Festplattenbezeichnung herausfinden
-
-                
-
-
-
+                GetComponent("Win32_VideoController", "Name");                                      
+                                              
+                              
                 // Ausgabe CPU
 
 
                 // Ausgabe Instanz Prozessor
                 Console.WriteLine("Processor:");
                 Console.WriteLine();
+
                 // Ausgabe CPU Auslastung
                 Console.WriteLine("CPU: Load: {0} %", perfCPUCount.NextValue());
 
@@ -128,7 +116,7 @@ namespace PerformanceCounterV1
                 // Zwei Zeilen frei
                 Console.WriteLine();
                 Console.WriteLine();
-
+                
 
 
                 // Ausgabe Arbeitsspeicher
