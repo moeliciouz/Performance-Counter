@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,26 +14,14 @@ namespace PerformanceCounterV1
     {
         static void Main(string[] args)
         {
-            // Informationen über System Scannen
+            // Informationen über System anzeigen
 
-            // CPU
-            GetCPU("Win32_Prcessor", "Name");
-            Console.Read();
+            // Vorinformationen sammeln
             
-
-            
-            //Console.WriteLine("You have a {0} running at {1} MHz.", cpuType, cpuSpeed);
-
-            // Arbeitsspeicher Bezeichnung herausfinden
-
-            // Festplattenbezeichnung herausfinden
-
             // Netzwerk Interface herausfinden
             PerformanceCounterCategory category = new PerformanceCounterCategory("Network Interface");
             String[] NetworkInterface = category.GetInstanceNames();
             string FirstNetworkInterface = NetworkInterface[0];
-
-            
 
             // CPU
 
@@ -97,6 +85,23 @@ namespace PerformanceCounterV1
                 Console.WriteLine();
                 Console.WriteLine();
 
+                // Allgemeine Angaben über Computer anzeigen
+                GetComponent("Win32_Processor", "Name");
+                GetComponent("Win32_VideoController", "Name");
+
+                //int ProcessorX = Console.Read();
+                //Console.WriteLine(ProcessorX);
+
+
+
+                //Console.WriteLine("You have a {0} running at {1} MHz.", cpuType, cpuSpeed);
+
+                // Arbeitsspeicher Bezeichnung herausfinden
+
+                // Festplattenbezeichnung herausfinden
+
+                
+
 
 
                 // Ausgabe CPU
@@ -155,6 +160,7 @@ namespace PerformanceCounterV1
 
 
                 // Ausgabe Instanz Festplatte C: 
+
                 Console.WriteLine("Physical Disk C:");
                 Console.WriteLine();
 
@@ -185,7 +191,7 @@ namespace PerformanceCounterV1
         }
         
         // CPU Typ herausfinden
-        private static void GetCPU(string hwclass, string collection)
+        private static void GetComponent(string hwclass, string collection)
         {
             ManagementObjectSearcher CPUIdent = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM " + hwclass);
             foreach (ManagementObject device in CPUIdent.Get())
