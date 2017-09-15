@@ -17,7 +17,7 @@ namespace PerformanceCounterV1
             // Informationen über System anzeigen
 
             // Vorinformationen sammeln
-            
+
             // Netzwerk Interface herausfinden
             PerformanceCounterCategory category = new PerformanceCounterCategory("Network Interface");
             String[] NetworkInterface = category.GetInstanceNames();
@@ -41,11 +41,16 @@ namespace PerformanceCounterV1
             // Zeigt an wie viele Kontextwechsel pro Sekunde auf der CPU ablaufen
             PerformanceCounter PerfCPUConSwitchCount = new PerformanceCounter("System", "Context Switches/sec");
 
-            
+
             // Arbeitsspeicher
-            
+
             // Zeigt den freien Arbeitsspeicher in MB an
             PerformanceCounter perfMemCount = new PerformanceCounter("Memory", "Available Mbytes");
+            
+            //int memAvail = (int)PCMemory.nextValue();
+            //double dMemAvail = memAvail /1024.0;
+            //Console.Write("Memory Available" + mMemAvail + "GB");
+            //Console.ReadKey(true)
 
             // Zeigt den gerade benutzten Arbeitsspeicher an
             PerformanceCounter perfMemInUse = new PerformanceCounter("Memory", "Committed Bytes");
@@ -60,7 +65,7 @@ namespace PerformanceCounterV1
             // Festplatte
 
             // Zeigt die % der Zeit, die die Festplatte C:\ mit Lesen verbringt
-            PerformanceCounter perfDskPercReadTime = new PerformanceCounter("PhysicalDisk", "% Disk Read Time","_Total"); //"0 C:"
+            PerformanceCounter perfDskPercReadTime = new PerformanceCounter("PhysicalDisk", "% Disk Read Time", "_Total"); //"0 C:"
 
             // Zeigt die % der Zeit, die die Festplatte C:\ mit Schreiben verbringt
             PerformanceCounter perfDskPercWriteTime = new PerformanceCounter("PhysicalDisk", "% Disk Write Time", "_Total");
@@ -75,13 +80,13 @@ namespace PerformanceCounterV1
 
             PerformanceCounter perfNetIntByteSec = new PerformanceCounter("Network Interface", "Bytes Total/sec", FirstNetworkInterface);
 
-            
+
             // unendliche while Schleife
             while (true)
             {
                 // Programm durchgehend laufen lassen 
                 Thread.Sleep(1000);
-                
+
                 // Zwei Zeilen frei
                 Console.WriteLine();
                 Console.WriteLine();
@@ -106,82 +111,59 @@ namespace PerformanceCounterV1
 
                 // Ausgabe CPU Auslastung
                 Console.WriteLine("CPU: Load: {0} %", perfCPUCount.NextValue());
-
                 // Ausgabe CPU % der maximalen Auslastung
                 Console.WriteLine("CPU: % of Maximum Load: {0} %", perfCPUMaxCount.NextValue());
-
                 // Ausgabe CPU % der Zeit die für Hardware Unterbrechungen bereitgestellt wird
                 Console.WriteLine("CPU: % of Interrupt Time: {0}", perfCPUInterCount.NextValue());
-
                 // Ausgabe Anzahl der Threads in der CPU Warteschlange
                 Console.WriteLine("CPU: Count of Threads in Queue: {0}", PerfCPUThreadCount.NextValue());
-
                 // Ausgabe Kontextwechsel pro Sekunde auf der CPU
                 Console.WriteLine("CPU: Count of context switches per second: {0}", PerfCPUConSwitchCount.NextValue());
-
                 // Zwei Zeilen frei
                 Console.WriteLine();
                 Console.WriteLine();
-                
-
 
                 // Ausgabe Arbeitsspeicher
-
-
                 // Ausgabe Instanz Arbeitsspeicher
                 Console.WriteLine("Memory:");
                 Console.WriteLine();
 
                 // Ausgabe freier Arbeitsspeicher
-                Console.WriteLine("Memory: Available: {0} MBytes", perfMemCount.NextValue());
+                Console.WriteLine("Memory: Available: {0} MB", (perfMemCount.NextValue()/1024.0));
 
                 // Ausgabe Arbeitsspeicher in Nutzung
-                Console.WriteLine("Memory: Physical Memory in Use: {0} ", perfMemInUse.NextValue());
-
+                Console.WriteLine("Memory: Physical Memory in Use: {0} MB", (perfMemInUse.NextValue()/1024.0));
                 //Ausgabe Anzahl der Seitenfehler pro Sekunde im Arbeitsspeicher
-                Console.WriteLine("Memory: Number of Page Faults per secornd: {0}", perfMemPageFault.NextValue());
-
+                Console.WriteLine("Memory: Number of Page Faults per secornd: {0} Errors/s", perfMemPageFault.NextValue());
                 //Ausgabe Anzahl der Speicherseiten Lesen + Schreiben pro Sekunde
-                Console.WriteLine("Memory: Number of Pages per second: {0}", perfMemPagePerSec.NextValue());
-
+                Console.WriteLine("Memory: Number of Pages per second: {0} Pages/s", perfMemPagePerSec.NextValue());
                 // Zwei Zeilen frei
                 Console.WriteLine();
                 Console.WriteLine();
-
-
-
                 // Ausgabe Festplatte 
-
-
                 // Ausgabe Instanz Festplatte C: 
                 Console.WriteLine("Physical Disk C:");
                 Console.WriteLine();
 
                 //Ausgabe % der Zeit, die die Festplatte C:\ mit Lesen verbringt
                 Console.WriteLine("Physical Disk C: % Read Time: {0}", perfDskPercReadTime.NextValue());
-
                 //Ausgabe % der Zeit, die die Festplatte C:\ mit Schreiben verbringt
                 Console.WriteLine("Physical Disk C: % Write Time: {0}", perfDskPercWriteTime.NextValue());
-
                 //Ausgabe Länge der aktuellen Warteschlange von Festplatte C:
                 Console.WriteLine("Physical Disk C: Average Queue Length: {0}", perfDskAvgQueueLength.NextValue());
-
                 // Zwei Zeilen frei
                 Console.WriteLine();
                 Console.WriteLine();
-                
 
                 // Ausgabe Netzwerk
-
                 // Ausgabe Netzwerk Interface Bezeichnung
-                
+
                 // Ausgabe Bytes/sec, die vom Netzwerkinterface verarbeitet werden
                 Console.WriteLine("{1}: Bytes Total/s: {0}", perfNetIntByteSec.NextValue(), FirstNetworkInterface);
-                
-            }
 
+            }
         }
-        
+
         // CPU Typ herausfinden
         private static void GetComponent(string hwclass, string collection)
         {
@@ -193,4 +175,3 @@ namespace PerformanceCounterV1
         }
     }
 }
-
